@@ -1,20 +1,11 @@
 package com.infinitegraph.rest;
 
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Collection;
-
-import org.apache.log4j.Logger;
-
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
 import com.infinitegraph.Vertex;
+import com.infinitegraph.Edge;
+import com.infinitegraph.BaseEdge;
 import com.infinitegraph.BaseVertex;
 import com.infinitegraph.AccessMode;
 import com.infinitegraph.Transaction;
@@ -41,16 +32,26 @@ public class GephiJSONResource extends ServerResource {
         // Extract graph
         try {
         	
-            // Open graph databse
+            // Open graph database
             graphDB = GraphFactory.open("Graph.CSV", "config.properties");
         	
             // Start transaction
      		tx = graphDB.beginTransaction(AccessMode.READ);
+     		
+     		// Extract vertices
             for(Vertex vertex : graphDB.getVertices())
             {   
                 json = json + "{\"an\":{\"" + vertex.getId() + "\":{\"label\":\"" + vertex.getId() + "\"}}}" + "\r\n";
             }
-
+            
+            // Extract edges
+            for(Edge edge : graphDB.getEdges())
+            {   
+                String source = String.valueOf(edge.getOrigin().getId());
+                String target = String.valueOf(edge.getTarget().getId());
+                json = json + "{\"ae\":{\"" + source + "_" + target + "\":{\"source\":\"" + source + "\",\"directed\":false,\"target\":\"" + target + "\"}}}" + "\r\n";
+            }
+            
      		// Commit transaction
      		tx.commit();
  		}
