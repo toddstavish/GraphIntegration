@@ -1,0 +1,12 @@
+This code sample uses the InfiniteGraph database to analyze data from disparate datasources. Three relational databases have been exported to CSV (located in the resources directory). A REST server is used to send the merged graph to the Gephi visualization application for analysis. 
+
+Instructions:
+1. Install the free evaluation of InfiniteGraph
+2. Install maven
+3. mvn compile
+4. mvn exec:exec (this ingests the csv into the graph)
+5. Edit pom.xml changing com.infinitegraph.csv.Load to com.infinitegraph.rest.Server
+6. mvn compile
+7. mvn exec:exec (this launches the REST server)
+8. Install Gephi and the streaming api plugin
+9. Use the following URL for the Gephi client stream - http://localhost:8182/getGraph/gephiJSON (note: you can check if it's working in a browser)

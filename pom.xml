@@ -46,7 +46,7 @@
 						<argument>-Xdebug</argument>
 			        	<argument>-classpath</argument>
 			        	<classpath></classpath>
-						<argument>com.infinitegraph.rest.Server</argument>
+						<argument>com.infinitegraph.csv.Load</argument>
 						<!-- <commandlineArgs></commandlineArgs> -->
 			      	</arguments>
 				</configuration>
