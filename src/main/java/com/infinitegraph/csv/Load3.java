@@ -101,7 +101,7 @@ public class Load3 {
                 // Retrieve DocumentIDs
                 IndexIterable<DocumentID> indexItr = null;          
                 try {        
-                    indexItr = graphIndex.get(dID);       		
+                    indexItr = graphIndex.get("id", dID);       		
                 } catch (IndexException e) {
                     e.printStackTrace();
                 }

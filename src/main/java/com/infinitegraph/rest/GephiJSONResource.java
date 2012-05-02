@@ -23,7 +23,7 @@ public class GephiJSONResource extends ServerResource {
     public String represent() {
         
         // JSON stream
-    	String json = new String();
+    	StringBuffer json = new StringBuffer();
     	
         // Create null transaction, null graph database instance
     	Transaction tx = null;
@@ -41,7 +41,17 @@ public class GephiJSONResource extends ServerResource {
      		// Extract vertices
             for(Vertex vertex : graphDB.getVertices())
             {   
-                json = json + "{\"an\":{\"" + vertex.getId() + "\":{\"label\":\"" + vertex.getId() + "\"}}}" + "\r\n";
+                String properties = new String();
+                System.out.println(vertex.getPropertyNames());
+                
+                for(String property : vertex.getPropertyNames())
+                {
+                    if (!property.equals("ooObj") && !property.equals("connector"))
+                    {
+                        properties = properties + "," + "\"" + property + "\":" + vertex.getProperty(property);
+                    }
+                }
+                json.append("{\"an\":{\"" + vertex.getId() + "\":{\"label\":\"" + vertex.getId() + "\"" + properties + "}}}" + "\r\n");
             }
             
             // Extract edges
@@ -49,7 +59,7 @@ public class GephiJSONResource extends ServerResource {
             {   
                 String source = String.valueOf(edge.getOrigin().getId());
                 String target = String.valueOf(edge.getTarget().getId());
-                json = json + "{\"ae\":{\"" + source + "_" + target + "\":{\"source\":\"" + source + "\",\"directed\":false,\"target\":\"" + target + "\"}}}" + "\r\n";
+                json.append("{\"ae\":{\"" + source + "_" + target + "\":{\"source\":\"" + source + "\",\"directed\":false,\"target\":\"" + target + "\"}}}" + "\r\n");
             }
             
      		// Commit transaction
@@ -77,7 +87,7 @@ public class GephiJSONResource extends ServerResource {
         
         System.out.println(json);
         
-        return json;
+        return json.toString();
         
     }
 

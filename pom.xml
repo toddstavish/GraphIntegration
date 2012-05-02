@@ -42,11 +42,11 @@
 					<arguments>
 						<argument>-Xms1000m</argument>
 						<argument>-Xmx2000m</argument>
-						<argument>-Djava.library.path=/Users/todd/Bin/InfiniteGraph-2.0.0/mac86_64/lib</argument>
+						<argument>-Djava.library.path=/Users/todd/Bin/InfiniteGraph-2.1.0/mac86_64/lib</argument>
 						<argument>-Xdebug</argument>
 			        	<argument>-classpath</argument>
 			        	<classpath></classpath>
-						<argument>com.infinitegraph.csv.Load</argument>
+						<argument>com.infinitegraph.rest.Server</argument>
 						<!-- <commandlineArgs></commandlineArgs> -->
 			      	</arguments>
 				</configuration>
@@ -66,14 +66,14 @@
 			<artifactId>graph</artifactId>
 			<version>1.2.0</version>
 			<scope>system</scope>
-	    	<systemPath>/Users/todd/Bin/InfiniteGraph-2.0.0/mac86_64/lib/InfiniteGraph.jar</systemPath>
+	    	<systemPath>/Users/todd/Bin/InfiniteGraph-2.1.0/mac86_64/lib/InfiniteGraph.jar</systemPath>
 		</dependency>
         <dependency>
 			<groupId>com.objy</groupId>
 			<artifactId>db</artifactId>
 			<version>10.2</version>
 			<scope>system</scope>
-	    	<systemPath>/Users/todd/Bin/InfiniteGraph-2.0.0/mac86_64/lib/oojava.jar</systemPath>
+	    	<systemPath>/Users/todd/Bin/InfiniteGraph-2.1.0/mac86_64/lib/oojava.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.opencsv</groupId>

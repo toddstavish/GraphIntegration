@@ -70,7 +70,7 @@ public class Load2 {
         // Create index
         try {
             tx = graphDB.beginTransaction(AccessMode.READ_WRITE);
-            IndexManager.<DocumentID>createGraphIndex(DocumentID.class.getName(), "id");
+            IndexManager.<DocumentID>createGraphIndex("Load2", DocumentID.class.getName(), "id");
             graphIndex = IndexManager.getGraphIndex(RecordID.class.getName(), "id");          
             tx.commit();
         } catch (IndexException e) {
@@ -102,7 +102,7 @@ public class Load2 {
                 // Retrieve RecordIDs
                 IndexIterable<RecordID> indexItr = null;          
                 try {        
-                    indexItr = graphIndex.get(rID);       		
+                    indexItr = graphIndex.get("id", rID);       		
                 } catch (IndexException e) {
                     e.printStackTrace();
                 }

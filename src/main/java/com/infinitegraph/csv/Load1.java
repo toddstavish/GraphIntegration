@@ -65,7 +65,7 @@ public class Load1 {
         // Create index
         try {
             tx = graphDB.beginTransaction(AccessMode.READ_WRITE);
-            IndexManager.<RecordID>createGraphIndex(RecordID.class.getName(), "id");
+            IndexManager.<RecordID>createGraphIndex("Load1", RecordID.class.getName(), "id");
             tx.commit();
         } catch (IndexException e) {
         	e.printStackTrace();
